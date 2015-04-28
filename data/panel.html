@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Twitch Live!</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/panel.css">
+	<script src="js/api.js"></script>
+</head>
+<body onload="loadCheck(); return false;">
+	<div id="container">
+		<div id="header">
+			<a href="" onclick="loadLoginPage(); return false;" id="login-a"><div class="button" id="header-login"><span data-l10n-id="sign_in"></span></div></a>
+			<div id="search"><input type="text" id="search-input" placeholder="Search" oninput="aramaYap()"> <a href="#" onclick="refreshContent()" class="refresh"><img id="refreshImg" src="img/refresh.png" alt="Refresh" width="16" height="16"></a></div>
+		</div>
+		<nav>
+			<ul id="list">
+				<li>
+					<a href="javascript:void(0)" onclick="printGames()">
+						<img src="img/games.png" alt="Games">
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" onclick="getFollowings()">
+						<img src="img/following.png" alt="Following">
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" onclick="printStreams()">
+						<img src="img/channels.png" alt="Channels">
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" onclick="getFeatured()">
+						<img src="img/featured.png" alt="Search">
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" onclick="getSettings()">
+						<img src="img/settings.png" alt="Settings">
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<div id="content">
+			<ul id="content-list">
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

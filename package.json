@@ -1,0 +1,12 @@
+{
+  "name": "twitch_live",
+  "title": "Twitch Live",
+  "id": "jid1-SE3gVqeg20464w",
+  "description": "A simple and useful add-on for Twitch.tv notifications and streams",
+  "author": "Can Altinova",
+  "license": "MPL 2.0",
+  "version": "0.2.1",
+  "permissions": {
+    "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"]
+	}
+}

@@ -2,214 +2,215 @@
  *		Twitch Live CSS
  *		Created by Canaltinova
  */
-body{
-	font-family: sans-serif;
-	font-size: 13px;
+
+body {
+    font-family: sans-serif;
+    font-size: 13px;
 }
 
-.clear{
-	clear: both;
-	width: 0;
+.clear {
+    clear: both;
+    width: 0;
 }
 
 a:focus {
     outline: none;
 }
 
-#container{
- 	width: 400px;
- 	height: 550px;
+#container {
+    width: 400px;
+    height: 550px;
 }
 
-#header{
- 	background: #6441A5;
- 	height: 25px;
- 	padding: 7px 10px 3px 10px;
+#header {
+    height: 25px;
+    background: #6441A5;
+    padding: 7px 10px 3px 10px;
 }
 
-#header:after{
- 	clear: both;
+#header:after {
+    clear: both;
 }
 
-.button{
- 	background: #4b4a4a;
-	padding: 4px 20px;
-	float:left;
-	color: white;
-	border-radius: 5px;
-	border: 0;
-	border-bottom: solid 3px #292929;
-	cursor: pointer;
+.button {
+    padding: 4px 20px;
+    background: #4b4a4a;
+    float: left;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    border-bottom: solid 3px #292929;
+    cursor: pointer;
 }
 
-#search{
- 	float:right;
-
+#search {
+    float: right;
 }
 
-#search a{
- 	vertical-align: middle;
- 	padding-left: 5px;
+#search a {
+    vertical-align: middle;
+    padding-left: 5px;
 }
 
-#search input{
-	background: #B9A3E3;
-	border: none;
-	border-bottom: solid 3px #4e3284;
-	height: 20px;
+#search input {
+    background: #B9A3E3;
+    border: none;
+    border-bottom: solid 3px #4e3284;
+    height: 20px;
 }
 
-nav{
-	width: 40px;
-	height: 519px;
-	background: #6441A5;
-	float: left;
+nav {
+    width: 40px;
+    height: 519px;
+    background: #6441A5;
+    float: left;
 }
 
-#content{
-	background: #F1F1F1;
-	height: 519px;
-	overflow: auto;
+#content {
+    height: 519px;
+    background: #F1F1F1;
+    overflow: auto;
 }
 
-#list img{
-	width:32px;
-	height: 32px;
+#list img {
+    width: 32px;
+    height: 32px;
 }
 
-#list a{
-	width: 40px;
-	height: 32px;
-	display: block;
-	padding: 5px 0;
-	margin: 0 auto;
-	text-align: center;
+#list a {
+    width: 40px;
+    height: 32px;
+    padding: 5px 0;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
 }
 
-#list a:hover{
-	background: #262626;
+#list a:hover {
+    background: #262626;
 }
 
-#list a:active, #list a:focus {
-	background: #262626;
+#list a:active,
+#list a:focus {
+    background: #262626;
 }
 
-#list:first-child{
-	padding-top: 5px;
+#list:first-child {
+    padding-top: 5px;
 }
 
 #content-list li {
-	padding: 10px 10px 13px 0	;
-	color: #262626;
-	border-bottom: 1px solid #dcdcdc;
-	border-top: 1px solid #fff;
+    padding: 10px 10px 13px 0;
+    color: #262626;
+    border-bottom: 1px solid #dcdcdc;
+    border-top: 1px solid #fff;
 }
 
-#content-list li:hover{
-	background: #f8f8f8;
+#content-list li:hover {
+    background: #f8f8f8;
 }
 
 #content-list li h1 {
-	font-weight: bold;
-	font-size: 12px;
+    font-weight: bold;
+    font-size: 12px;
 }
 
-#content-list li img{
-	float:left;
-	padding: 0 10px 0 20px;
+#content-list li img {
+    float: left;
+    padding: 0 10px 0 20px;
 }
 
 #content-list li h2:first-child {
-	padding-top:5px;
+    padding-top: 5px;
 }
 
 #content-list li h2 {
-	color: #b3b3b3;
-	display: block;
-	width: 230px;
-	margin-left: 110px;
+    width: 230px;
+    margin-left: 110px;
+    display: block;
+    color: #b3b3b3;
 }
-
 /* TODO: GAME H2 PROBLEM */
+
 .game-h {
-	margin-left: 0;
-	width: auto;
-	color: #b3b3b3;
-	display: block;
-	padding-top:5px;
+    width: auto;
+    padding-top: 5px;
+    margin-left: 0;
+    color: #b3b3b3;
+    display: block;
 }
 
-#login-section{
-	margin: 0 auto;
-	text-align: center;
+#login-section {
+    margin: 0 auto;
+    text-align: center;
 }
 
-#login-section button, #content-list button{
-	float:none;
-	margin-top: 15px;
-	width: 340px;
-	height: 40px;
+#login-section button,
+#content-list button {
+    width: 340px;
+    height: 40px;
+    margin-top: 15px;
+    float: none;
 }
 
-#content-list button{
-	margin-left: 5px;
+#content-list button {
+    margin-left: 5px;
 }
 
-.login-input{
-	width: 300px;
-	background:#fff;
-	border:1px solid #ccc;
-	padding:10px 15px;
-	font-family:'Open Sans',sans-serif;
-	font-size:95%;
-	color:#555;
-	text-align: center;
+.login-input {
+    width: 300px;
+    background: #fff;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 95%;
+    color: #555;
+    text-align: center;
 }
 
-#loading-screen{
-	padding-top:150px;
-	width: 100px;
-	height: 100px;
-	margin: 0 auto;
+#loading-screen {
+    padding-top: 150px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
 }
 
-#content-list .login-button{
-	margin-bottom: 10px;
+#content-list .login-button {
+    margin-bottom: 10px;
 }
-
-
 /* Alert Boxes */
-.alert{
-	padding: 8px 35px 8px 14px;
-	margin: 20px 0 18px 0;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	background-color: #fcf8e3;
-	border: 1px solid #d6e9c6;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	text-align: center;
-	line-height: 20px;
+
+.alert {
+    padding: 8px 35px 8px 14px;
+    margin: 20px 0 18px 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #d6e9c6;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 20px;
 }
 
-.success-box{
-	color: #468847;
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
+.success-box {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
 }
 
-.warning-box{
-	color: #b94a48;
-	background-color: #f2dede;
-	border-color: #eed3d7;
+.warning-box {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
 }
 
 .info-box {
-color: #3a87ad;
-background-color: #d9edf7;
-border-color: #bce8f1;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #3a87ad;
 }
 
-b{
-	font-weight: bold;
+b {
+    font-weight: bold;
 }

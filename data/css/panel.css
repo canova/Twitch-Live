@@ -1,11 +1,12 @@
 /* 
- *		Twitch Live CSS
- *		Created by Canaltinova
+ *      Twitch Live CSS
+ *      Created by Canaltinova
  */
 
 body {
     font-family: sans-serif;
     font-size: 13px;
+    overflow: hidden;
 }
 
 .clear {
@@ -67,17 +68,19 @@ nav {
 }
 
 #content {
+    width: 360px;
     height: 519px;
     background: #F1F1F1;
     overflow: auto;
+    float: left;
 }
 
-#list img {
+#sideMenu img {
     width: 32px;
     height: 32px;
 }
 
-#list a {
+#sideMenu a {
     width: 40px;
     height: 32px;
     padding: 5px 0;
@@ -86,32 +89,29 @@ nav {
     text-align: center;
 }
 
-#list a:hover {
+#sideMenu a:hover,
+#sideMenu a.active {
     background: #262626;
 }
 
-#list a:active,
-#list a:focus {
-    background: #262626;
-}
-
-#list:first-child {
+#sideMenu:first-child {
     padding-top: 5px;
 }
 
-#content-list li {
+#content-list li a {
     padding: 10px 10px 13px 0;
     color: #262626;
     border-bottom: 1px solid #dcdcdc;
     border-top: 1px solid #fff;
+    display: block;
 }
 
-#content-list li:hover {
+#content-list a:hover {
     background: #f8f8f8;
 }
 
 #content-list li h1 {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 12px;
 }
 
@@ -157,7 +157,7 @@ nav {
     margin-left: 5px;
 }
 
-.login-input {
+#username {
     width: 300px;
     background: #fff;
     padding: 10px 15px;
@@ -178,15 +178,20 @@ nav {
 #content-list .login-button {
     margin-bottom: 10px;
 }
-/* Alert Boxes */
 
+a.passSign {
+    margin-top: 10px;
+    color: #6441A5;
+    display: block;
+}
+
+/* Alert Boxes */
 .alert {
     padding: 8px 35px 8px 14px;
     margin: 20px 0 18px 0;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     background-color: #fcf8e3;
     border: 1px solid #d6e9c6;
-    -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     text-align: center;
@@ -212,5 +217,5 @@ nav {
 }
 
 b {
-    font-weight: bold;
+    font-weight: 700;
 }

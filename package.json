@@ -6,7 +6,10 @@
   "author": "Can Altinova",
   "license": "MPL 2.0",
   "version": "0.2.1",
+
   "permissions": {
-    "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"]
+    "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"],
+    "multiprocess": true,
+    "private-browsing": true
 	}
 }

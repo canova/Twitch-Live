@@ -1,0 +1,12 @@
+<div id="loading-screen" ng-show="loading"><img src="img/loading.gif" alt="" width="100" height="100"></div>
+<ul id="content-list">
+    <li ng-repeat="item in list">
+        <a href="javascript:void(0);" ng-click="streamByGame(item.game.name)">
+            <img src="{{ item.game.logo.small }}" alt="" width="60" height="36">
+            <h1>{{ item.game.name }}</h1>
+            <div class="sub">
+                <h2 class="game-h">{{ item.channels + " " + channelsText + " - " +  item.viewers + " " + viewersText }}</h2>
+            </div>
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,13 @@
+<div id="loading-screen" ng-show="loading"><img src="img/loading.gif" alt="" width="100" height="100"></div>
+<ul id="content-list">
+    <li ng-repeat="item in list">
+        <a href="{{ item.stream.channel.url }}" target="_blank">
+            <img src="{{ item.stream.preview.small }}" alt="" width="80" height="50">
+            <h1>{{ item.stream.channel.status.substring(0,35) | limitTo: 35}}</h1>
+            <div class="sub">
+                <h2>{{ item.stream.channel.display_name + ' - ' + item.stream.viewers + ' ' + viewersText }}</h2>
+                <h2>{{ playingText + ' ' + item.stream.game }}</h2>
+            </div>
+        </a>
+    </li>
+</ul>

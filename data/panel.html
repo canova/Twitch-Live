@@ -1,67 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="twitchLive">
-
 <head>
     <meta charset="UTF-8">
     <title>Twitch Live!</title>
+
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div id="container">
-        <!-- Header -->
-        <div id="header">
-            <a href="#login" id="loginLink" class="button">
-                <span data-l10n-id="sign_in"></span>
-            </a>
-            <div id="search">
-                <input type="text" id="search-input" placeholder="Search" oninput="aramaYap()">
-                <a href="#" onclick="refreshContent()" class="refresh"><img id="refreshImg" src="img/refresh.png" alt="Refresh" width="16" height="16"></a>
-            </div>
+    <!-- Header -->
+    <header id="header">
+        <a href="#login" id="loginOut" class="button loginOut">
+            <span data-l10n-id="sign_in"></span>
+        </a>
+        
+        <!-- headerRight -->
+        <div class="headerRight">
+            <input type="text" id="search" placeholder="Search" ng-model="query">
+            <a href="#" onclick="refreshContent()" id="refresh"></a>
+            <div class="clear"></div>
         </div>
-        <!-- //Header -->
+        <!-- //headerRight -->
 
-        <!-- Sidebar -->
+        <div class="clear"></div>
+    </header>
+    <!-- //Header -->
+
+    <!-- Content -->
+    <div id="content">
         <nav ng-controller="sidebarController">
+            <!-- sideMenu -->
             <ul id="sideMenu">
-                <li>
-                    <a href="#games" ng-class="{ active: isActive('/games')}">
-                        <img src="img/games.png" alt="Games">
-                    </a>
+                <li class="games">
+                    <a href="#games"ng-class="{ active: isActive('/games')}"></a>
                 </li>
-                <li>
-                    <a href="#following" ng-class="{ active: isActive('/following')}">
-                        <img src="img/following.png" alt="Following">
-                    </a>
+                <li class="following">
+                    <a href="#following" ng-class="{ active: isActive('/following')}"></a>
                 </li>
-                <li>
-                    <a href="#streams" ng-class="{ active: isActive('/streams')}">
-                        <img src="img/channels.png" alt="Channels">
-                    </a>
+                <li class="streams">
+                    <a href="#streams" ng-class="{ active: isActive('/streams')}"></a>
                 </li>
-                <li>
-                    <a href="#featured" ng-class="{ active: isActive('/featured')}">
-                        <img src="img/featured.png" alt="Search">
-                    </a>
+                <li class="featured">
+                    <a href="#featured" ng-class="{ active: isActive('/featured')}"></a>
                 </li>
-                <li>
-                    <a href="#settings" ng-class="{ active: isActive('/settings')}">
-                        <img src="img/settings.png" alt="Settings">
-                    </a>
+                <li class="search">
+                    <a href="#search" ng-class="{ active: isActive('/search')}"></a>
+                </li>
+                <li class="settings">
+                    <a href="#settings" ng-class="{ active: isActive('/settings')}"></a>
                 </li>
             </ul>
+            <!-- //sideMenu -->
         </nav>
-        <!-- //Sidebar -->
+        
+        <!-- //main -->
+        <main ng-view>
+        </main>
+        <!-- //main -->
 
-        <!-- Content -->
-        <div id="content" ng-view>
-        </div>
-        <!-- //Content -->
+        <div class="clear"></div>
     </div>
+    <!-- //Content -->
+
+    <!-- Javascripts -->
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.min.js"></script>
     <script type="text/javascript" src="js/api.js"></script>
+    <!-- //Javascripts -->
 </body>
-
 </html>

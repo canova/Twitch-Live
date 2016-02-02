@@ -1,0 +1,282 @@
+/* 
+ *  Twitch Live CSS
+ *  Created by Canaltinova
+ */
+
+/* Globals */
+body {
+    width: 400px;
+    height: 550px;
+    background: #F1F1F1;
+    font-family: sans-serif;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.clear {
+    clear: both;
+    height: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+b {
+    font-weight: 700;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Header */
+header {
+    height: 25px;
+    background: #6441A5;
+    padding: 5px 10px 5px 10px;
+    display: block;
+}
+
+.button {
+    background: #4b4a4a;
+    border: none;
+    border-bottom: solid 3px #292929;
+    border-radius: 5px;
+    padding: 4px 20px;
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
+}
+
+a.button.loginOut {
+    float: left;
+}
+
+.headerRight {
+    float: right;
+}
+
+.headerRight input#search {
+    height: 22px;
+    background: #B9A3E3;
+    border: none;
+    border-bottom: solid 3px #4e3284;
+    padding: 0 10px;
+    float: left;
+    transition: 0.25s;
+    font: inherit;
+    color: #6441A5;
+}
+
+.headerRight input#search:hover {
+    background: #D0B7FF;
+}
+
+.headerRight input#search:focus {
+    background: #fff;
+}
+
+a#refresh {
+    width: 16px;
+    height: 16px;
+    background: url('../images/refresh.png') no-repeat center center /contain;
+    margin: 3px 0 0 10px;
+    display: block;
+    float: right;
+    transition: 0.2s;
+}
+
+/* Content */
+#content {
+    overflow: hidden;
+}
+
+/* Sidebar */
+nav {
+    width: 40px;
+    height: 519px;
+    background: #6441A5;
+    float: left;
+}
+
+ul#sideMenu {
+    width: 40px;
+}
+
+ul#sideMenu li a {
+    width: 40px;
+    height: 32px;
+    padding: 7px 0;
+    margin: 0 auto;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    background-position: center center;
+    transition: 0.25s;
+}
+
+ul#sideMenu li a:hover,
+ul#sideMenu li a.active {
+    background-color: #262626;
+}
+
+ul#sideMenu li.games a {
+    background-image: url('../images/games.png');
+}
+
+ul#sideMenu li.following a {
+    background-image: url('../images/following.png');
+}
+
+ul#sideMenu li.streams a {
+    background-image: url('../images/streams.png');
+}
+
+ul#sideMenu li.featured a {
+    background-image: url('../images/featured.png');
+}
+
+ul#sideMenu li.search a {
+    background-image: url('../images/search.png');
+}
+
+ul#sideMenu li.settings a {
+    background-image: url('../images/settings.png');
+}
+
+/* Main Content */
+main {
+    width: 360px;
+    height: 519px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    float: left;
+}
+
+.loadingScreen {
+    width: 100px;
+    height: 100px;
+    background: url('../images/loading.gif') no-repeat center center /contain;
+    margin: 180px auto 239px;
+}
+
+/* Login Page */
+form#loginForm {
+    text-align: center;
+}
+
+input#username {
+    width: 300px;
+    background: #fff;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 95%;
+    color: #555;
+    text-align: center;
+    display: block;
+    transition: 0.2s;
+}
+
+input#username:focus {
+    border-color: #888;
+}
+
+main button.button {
+    width: 332px;
+    height: 40px;
+    margin: 25px auto 10px;
+    display: block;
+}
+
+/* Game List */
+ul#contentList li a {
+    width: 90%;
+    padding: 15px 5%;
+    border-bottom: 1px solid #dcdcdc;
+    border-top: 1px solid #fff;
+    display: block;
+    transition: 0.2s;
+    color: #262626;
+}
+
+ul#contentList li a:hover {
+    background: #f8f8f8;
+}
+
+ul#contentList li a img {
+    width: 60px;
+    height: 36px;
+    float: left;
+}
+
+ul#contentList li a img.channelImage {
+    width: 80px;
+    height: 50px;
+    float: left;
+}
+
+#contentList li a h1 {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+#contentList li h2:first-child {
+    padding-top: 5px;
+}
+
+#contentList li h2 {
+    width: 230px;
+    color: #b3b3b3;
+    display: block;
+}
+
+#contentList li .rightSide {
+    margin-left: 90px;
+}
+
+#contentList li .rightSide.game {
+    margin-left: 70px;
+}
+
+/* Alert Boxes */
+.alert {
+    width: 90%;
+    padding: 10px 5%;
+    margin: 30px 0;
+    background-color: #fcf8e3;    
+    border: 1px solid #d6e9c6;
+    text-align: center;
+    line-height: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.successBox {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+}
+
+.warningBox {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+}
+
+.infoBox {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #3a87ad;
+}
+
+.alert.infoBox > div {
+    margin: 10px 0;
+}
+

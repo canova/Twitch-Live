@@ -1,13 +1,17 @@
-<div id="loading-screen" ng-show="loading"><img src="img/loading.gif" alt="" width="100" height="100"></div>
-<ul id="content-list">
-    <li ng-repeat="item in list">
-        <a href="{{ item.stream.channel.url }}" target="_blank">
-            <img src="{{ item.stream.preview.small }}" alt="" width="80" height="50">
-            <h1>{{ item.stream.channel.status.substring(0,35) | limitTo: 35}}</h1>
-            <div class="sub">
+<div class="loadingScreen" ng-show="loading"></div>
+<ul id="contentList">
+    <li ng-repeat="item in list | filter:query">
+        <a href="javascript:void(0);" ng-click="openPage(item.stream.channel.url)">
+            <img src="{{ item.stream.preview.small }}" alt="" class="channelImage">
+
+            <div class="rightSide">
+                <h1>{{ item.stream.channel.status.substring(0,35) | limitTo: 35}}</h1>
+
                 <h2>{{ item.stream.channel.display_name + ' - ' + item.stream.viewers + ' ' + viewersText }}</h2>
                 <h2>{{ playingText + ' ' + item.stream.game }}</h2>
             </div>
+
+            <div class="clear"></div>
         </a>
     </li>
 </ul>

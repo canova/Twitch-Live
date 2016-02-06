@@ -6,7 +6,7 @@
 /* Globals */
 body {
     width: 400px;
-    height: 550px;
+    height: 555px;
     background: #F1F1F1;
     font-family: sans-serif;
     font-size: 13px;
@@ -152,7 +152,7 @@ ul#sideMenu li.settings a {
 /* Main Content */
 main {
     width: 360px;
-    height: 519px;
+    height: 520px;
     overflow-x: hidden;
     overflow-y: auto;
     float: left;

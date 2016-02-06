@@ -1,66 +1,56 @@
 // Create the module and name it twitchLive, also include ngRoute for routing.
 var twitchLive = angular.module('twitchLive', ['ngRoute']);
-//var response = [];
+var gUsername;
 
 
 // Configure our routes
 twitchLive.config(function($routeProvider) {
     $routeProvider
-
     // Route for the initial page
         .when('/', {
         templateUrl: 'templates/games.html',
         controller: 'mainController'
     })
-
     // Route for the games page
     .when('/games', {
         templateUrl: 'templates/games.html',
         controller: 'gamesController'
     })
-
     // Route for the streams by game page
     .when('/streamByGame/:gameName', {
         templateUrl: 'templates/streams.html',
         controller: 'streamByGameController'
     })
-
     // Route for the following page
     .when('/following', {
         templateUrl: 'templates/featured.html',
         controller: 'followingController'
     })
-
     // Route for the cannels page
     .when('/streams', {
         templateUrl: 'templates/streams.html',
         controller: 'streamsController'
     })
-
     // route for the featured page
     .when('/featured', {
         templateUrl: 'templates/featured.html',
         controller: 'featuredController'
     })
-
     // Route for the settings page
     .when('/settings', {
         templateUrl: 'templates/settings.html',
         controller: 'settingsController'
     })
-
     // Route for the search page
     .when('/search', {
         templateUrl: 'templates/search.html',
         controller: 'searchController'
     })
-
     // Route for the login page
     .when('/login', {
         templateUrl: 'templates/login.html',
         controller: 'loginController'
     })
-
     // Route for the other pages
     .otherwise({
         redirectTo: '/games'
@@ -68,38 +58,34 @@ twitchLive.config(function($routeProvider) {
 })
 
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('mainController', function($scope, $location) {
-
+    var firstPort = true; // getLoadCheckResponse port returns 2 times this is for just one execution.
+    getUserName(function(username) { gUsername = username; });
     addon.port.emit("getLoadCheck");
 
-
     addon.port.on("getLoadCheckResponse", function(signOut) {
+        if (firstPort) {
+            var firstTime = localStorage.getItem("twitchLiveFirst");
 
-        var firstTime = localStorage.getItem("twitchLiveFirst");
+            if ((firstTime == undefined || firstTime == true) && gUsername == undefined) { // I did "firstTime == true" just in case of new update or smth.
+                localStorage.setItem("twitchLiveFirst", false);
+                $location.url('/login');
+                $scope.$apply();
+            } else {
+                angular.element(document.getElementById('loginOut')).html(signOut);
+                $location.url('/games');
+                addon.port.emit("initialize", gUsername);
+                $scope.$apply();
+            }
 
-
-        if ((firstTime == null || firstTime == true) && getUserName() == null) { // I did "firstTime == true" just in case of new update or smth.
-            //localStorage.setItem("twitchLiveFirst", false);
-            $location.url('/login');
-            $scope.$apply();
-        } else {
-            angular.element(document.getElementById('loginOut')).html(signOut);
-            /* TODO: change onclick */
-            /*document.getElementById("#loginOut").onclick = function() {
-                cikisYap();
-                return false;
-            };*/
-            $location.url('/games');
-            addon.port.emit("initialize", getUserName());
-            $scope.$apply();
+            firstPort = false;
+            $scope.$digest();
         }
-
-        $scope.$digest();
     });
 });
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('gamesController', function($scope, $location) {
     $scope.loading = true;
 
@@ -124,7 +110,7 @@ twitchLive.controller('gamesController', function($scope, $location) {
     }
 });
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('streamByGameController', function($scope, $routeParams) {
     $scope.loading = true;
     //Send port for api call to main.js
@@ -148,14 +134,19 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
     };
 });
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('followingController', function($scope, $location) {
-    var username = getUserName();
-    if (username != null) {
-        addon.port.emit("getFollowings", username);
+    if (gUsername != undefined) {
+        addon.port.emit("getFollowings", gUsername);
         $scope.loading = true;
     } else {
-        $location.url('/login');
+        getUserName(function(username) { 
+            if (username != undefined) {
+                gUsername = username;
+            } else {
+                $location.url('/login');
+            }
+        });
     }
 
     document.getElementById("refresh").alt = "Refresh Followings";
@@ -179,7 +170,7 @@ twitchLive.controller('followingController', function($scope, $location) {
     };
 });
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('streamsController', function($scope) {
     $scope.loading = true;
 
@@ -205,7 +196,7 @@ twitchLive.controller('streamsController', function($scope) {
 });
 
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('featuredController', function($scope) {
     $scope.loading = true;
 
@@ -232,27 +223,32 @@ twitchLive.controller('featuredController', function($scope) {
 });
 
 
-// create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope
 twitchLive.controller('settingsController', function($scope, $location) {
 
-    var result = getUserName();
-    if (result == "" || result == null || result == undefined) {
+    if (gUsername == undefined) {
+        getUserName(function(username) { 
+            gUsername = username;
+        });
+    }
+
+    if (gUsername == "" || gUsername == null || gUsername == undefined) {
         addon.port.emit("getSettings", false);
     } else {
         addon.port.emit("getSettings", true);
     };
 
     addon.port.on("settingsResponse", function(logMsg, logInOut, refreshBtn, refreshMsg, help, createdBy) {
-        var result = getUserName();
+        getUserName(function(username) { gUsername = username; });
 
-        if (result == "" || result == null || result == undefined) {
+        if (gUsername == "" || gUsername == null || gUsername == undefined) {
             $scope.loggedIn = false;
-
         } else {
             $scope.loggedIn = true;
         }
 
         $scope.logMsg = logMsg;
+        $scope.result = gUsername;
         $scope.logInOut = logInOut;
         $scope.refreshBtn = refreshBtn;
         $scope.refreshMsg = refreshMsg;
@@ -275,7 +271,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
 
 
     $scope.refreshFollowings = function() {
-        addon.port.on('refreshFollowings', getUserName());
+        addon.port.on('refreshFollowings', getUserName(function(username) { gUsername = username; }));
     };
 });
 
@@ -287,7 +283,6 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
         if ($scope.query != undefined && $scope.query != '') {
             $scope.loading = true;
             addon.port.emit("search", $scope.query);
-            console.log('param here');
         }
     }, 500));
 
@@ -307,8 +302,8 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
 
 // Create the controller and inject Angular's $scope
 twitchLive.controller('loginController', function($scope, $location) {
-    if (getUserName() == null) {
-        console.log('loging iningen');
+    getUserName(function(username) { gUsername = username; })
+    if (gUsername == null) {
 
         //Send port for login page strings
         addon.port.emit("loginPage");
@@ -326,14 +321,12 @@ twitchLive.controller('loginController', function($scope, $location) {
 
         // If posted, then set twitch username and redirect to game page.
         $scope.post = function() {
-
             setUserName($scope.username);
             $location.url('/');
         };
     } else {
         logOut();
         $location.url('/');
-        console.log('loging outingen');
     }
 });
 
@@ -348,6 +341,7 @@ twitchLive.controller('sidebarController', function($scope, $location) {
 // Delaying a function to load for api calls
 function debounce(fn, delay) {
   var timer = null;
+
   return function () {
     var context = this, args = arguments;
     clearTimeout(timer);
@@ -357,17 +351,19 @@ function debounce(fn, delay) {
   };
 }
 
-function getUserName() {
-    var userName = localStorage.getItem("twitchName");
+function getUserName(callback) {
+    addon.port.emit('getStorage', 'twitchName');
 
-    return userName;
+    addon.port.on('getStorageResponse', function(username) {
+        callback(username);
+    });
 }
 
 function setUserName(twitchName) {
     try {
-        localStorage.setItem("twitchName", twitchName);
+        addon.port.emit('setStorage', 'twitchName', twitchName);
+        getUserName(function(username) { gUsername = username; });
         return true;
-
     } catch (ex) {
         return false;
     }
@@ -375,16 +371,16 @@ function setUserName(twitchName) {
 
 function deleteUserName() {
     try {
-        localStorage.removeItem("twitchName");
+        addon.port.emit('deleteStorage', 'twitchName');
+        gUsername = undefined;
         return true;
-
     } catch (ex) {
         return false;
     }
 }
 
 function logOut() {
-    if (getUserName() != null) {
+    if (gUsername != undefined) {
         var result = deleteUserName();
         if (result) {
             addon.port.emit("clearTimer");

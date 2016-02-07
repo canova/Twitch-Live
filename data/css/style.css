@@ -68,9 +68,9 @@ a.button.loginOut {
     border-bottom: solid 3px #4e3284;
     padding: 0 10px;
     float: left;
-    transition: 0.25s;
     font: inherit;
     color: #6441A5;
+    transition: 0.25s;
 }
 
 .headerRight input#search:hover {

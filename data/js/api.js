@@ -145,6 +145,7 @@ twitchLive.controller('followingController', function($scope, $location) {
                 gUsername = username;
             } else {
                 $location.url('/login');
+                $scope.$apply();
             }
         });
     }
@@ -153,8 +154,8 @@ twitchLive.controller('followingController', function($scope, $location) {
     //Creating an instance for push method
     $scope.list = [];
 
+    // If there is online streams this port will work.
     addon.port.on("followResponse", function(response, gViewers, gPlaying) {
-
         $scope.list.push(response);
         $scope.viewersText = gViewers;
         $scope.playingText = gPlaying;
@@ -163,6 +164,15 @@ twitchLive.controller('followingController', function($scope, $location) {
         //for scope life cycle
         $scope.$digest();
 
+    });
+
+    // If there is no following stream online, then this port will work.
+    addon.port.on("noFollowingStream", function(noStreamText) {
+        $scope.loading = false;
+        $scope.noStream = true;
+        $scope.noStreamText = noStreamText;
+
+        $scope.$digest();
     });
 
     $scope.openPage = function(url){
@@ -278,6 +288,14 @@ twitchLive.controller('settingsController', function($scope, $location) {
 
 // Create the controller and inject Angular's $scope
 twitchLive.controller('searchController', function($scope, $routeParams) {
+    $scope.beginning = true;
+    addon.port.emit('searchMessage');
+
+    addon.port.on('searchMessageResponse', function(searchMessage) {
+        $scope.beginningText = searchMessage;
+        $scope.$digest();
+    });
+
     // Wait for input query and send it as a search port
     $scope.$watch('query', debounce(function() {
         if ($scope.query != undefined && $scope.query != '') {
@@ -289,6 +307,7 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
     // Response port for search query
     addon.port.on("searchResponse", function(response, gViewers, gPlaying) {
         document.getElementById("refresh").alt = "Refresh Search";
+        $scope.beginning = false;
 
         $scope.list = response.streams;
         $scope.viewersText = gViewers

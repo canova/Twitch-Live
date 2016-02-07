@@ -1,4 +1,6 @@
 <div class="loadingScreen" ng-show="loading"></div>
+<div class="alert infoBox" ng-show="beginning">{{beginningText}}</div>
+
 <ul id="contentList">
     <li ng-repeat="item in list">
         <a href="javascript:void(0);" ng-click="openPage(item.channel.url)">

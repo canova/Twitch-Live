@@ -251,7 +251,7 @@ ul#contentList li a img.channelImage {
     width: 90%;
     padding: 10px 5%;
     margin: 30px 0;
-    background-color: #fcf8e3;    
+    background-color: #fcf8e3;
     border: 1px solid #d6e9c6;
     text-align: center;
     line-height: 20px;
@@ -280,3 +280,93 @@ ul#contentList li a img.channelImage {
     margin: 10px 0;
 }
 
+/* Settings Panel Checkbox and Radio Buttons */
+.settingsContent {
+    padding: 0 5%;
+}
+
+.setting {
+    margin: 15px 0;
+}
+
+.checkbox,
+.radio {
+    margin-top: 5px;
+}
+
+.checkbox label::before,
+.checkbox label::after,
+.radio label::before,
+.radio label::after {
+    content: '';
+    position: absolute;
+}
+
+.checkbox label::after {
+    content: '✔';
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    font-size: 17px;
+    line-height: 21px;
+    color: #6441A5;
+}
+
+.radio label::after {
+    width: 13px;
+    height: 13px;
+    margin: -7px 0 0 -7px;
+    background: #6441A5;
+    top: 12px;
+    left: 10px;
+}
+
+.checkbox label,
+.radio label {
+    padding-left: 25px;
+    line-height: 21px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.checkbox label {
+    margin-bottom: 10px;
+}
+
+.checkbox label::before,
+.radio label::before {
+    width: 17px;
+    height: 17px;
+    left: 0;
+    top: 2px;
+    border: 1px solid #aaa;
+    background: #f8f8f8;
+    border-radius: 3px;
+}
+
+.radio label::before, .radio label::after {
+    border-radius: 100%;
+}
+
+.checkbox label::after,
+.radio label::after {
+    -moz-transition: all .2s;
+    transition: all .2s;
+    -moz-transform: scale(0, 0);
+    transform: scale(0, 0);
+    opacity: 0;
+}
+
+.checkbox input,
+.radio input {
+    display: none;
+}
+.checkbox input:checked + label::after,
+.radio input:checked + label::after {
+    opacity: 1;
+    -moz-transform: scale(1, 1);
+    transform: scale(1, 1);
+}

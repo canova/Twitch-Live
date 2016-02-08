@@ -16,6 +16,53 @@
     <div class="alert infoBox">{{ refreshMsg }}</div>
 </div>
 
+<div class="settingsContent">
+    <div class="setting">
+        <div class="checkbox">
+            <input id="notification" type="checkbox" ng-model="notification" ng-change="change('notification')">
+            <label for="notification">Show notifications</label>
+
+            <input id="notifySound" type="checkbox" ng-model="notifySound" ng-change="change('notifySound')">
+            <label for="notifySound">Play sound in notifications</label>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="setting">
+    Open streams at
+        <div class="radio">
+            <input id="open1" type="radio" ng-model="open" value="1" ng-change="change('open')">
+            <label for="open1">new tab</label>
+
+            <input id="open3" type="radio" ng-model="open" value="2" ng-change="change('open')">
+            <label for="open3">popout</label>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="setting">
+    Select the sound of notification
+        <div class="radio">
+            <input id="sound1" type="radio" ng-model="notifySoundRing" value="Ring.mp3" ng-change="change('sound')">
+            <label for="sound1">Ring</label>
+
+            <input id="sound2" type="radio" ng-model="notifySoundRing" value="Chord.mp3" ng-change="change('sound')">
+            <label for="sound2">Chord</label>
+
+            <input id="sound3" type="radio" ng-model="notifySoundRing" value="Aurora.mp3" ng-change="change('sound')">
+            <label for="sound3">Aurora</label>
+
+            <input id="sound4" type="radio" ng-model="notifySoundRing" value="Circles.mp3" ng-change="change('sound')">
+            <label for="sound4">Circles</label>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+
 <div class="alert infoBox">
     <div>{{ help }}</div>
     

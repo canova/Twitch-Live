@@ -61,28 +61,25 @@ twitchLive.config(function($routeProvider) {
 
 // Create the controller and inject Angular's $scope
 twitchLive.controller('mainController', function($scope, $location) {
-    var firstPort = true; // getLoadCheckResponse port returns 2 times this is for just one execution.
     getUserName(function(username) { gUsername = username; });
     addon.port.emit('getLoadCheck');
 
-    addon.port.on('getLoadCheckResponse', function(signOut) {
-        if (firstPort) {
-            var firstTime = localStorage.getItem('twitchLiveFirst');
+    addon.port.on('getLoadCheckResponse', function loadCheckResponse(signOut) {
+        addon.port.removeListener("getLoadCheckResponse", loadCheckResponse); // Removing for prevent from duplicate event listeners
+        var firstTime = localStorage.getItem('twitchLiveFirst');
 
-            if ((firstTime == undefined || firstTime == true) && gUsername == undefined) { // I did 'firstTime == true' just in case of new update or smth.
-                localStorage.setItem('twitchLiveFirst', false);
-                $location.url('/login');
-                $scope.$apply();
-            } else {
-                angular.element(document.getElementById('loginOut')).html(signOut);
-                $location.url('/games');
-                addon.port.emit('initialize');
-                $scope.$apply();
-            }
-
-            firstPort = false;
-            $scope.$digest();
+        if ((firstTime == undefined || firstTime == true) && gUsername == undefined) { // Did 'firstTime == true' just in case of new update or smth.
+            localStorage.setItem('twitchLiveFirst', false);
+            $location.url('/login');
+            $scope.$apply();
+        } else {
+            angular.element(document.getElementById('loginOut')).html(signOut);
+            $location.url('/games');
+            addon.port.emit('initialize');
+            $scope.$apply();
         }
+
+        $scope.$digest();
     });
 });
 
@@ -136,7 +133,7 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
 });
 
 // Create the controller and inject Angular's $scope
-twitchLive.controller('followingController', function($scope, $location) {
+twitchLive.controller('followingController', function($scope, $location, $route) {
     if (gUsername != undefined) {
         addon.port.emit('getFollowings', gUsername);
         $scope.loading = true;
@@ -144,6 +141,7 @@ twitchLive.controller('followingController', function($scope, $location) {
         getUserName(function(username) { 
             if (username != undefined) {
                 gUsername = username;
+                $route.reload();
             } else {
                 $location.url('/login');
                 $scope.$apply();
@@ -293,10 +291,10 @@ twitchLive.controller('settingsController', function($scope, $location) {
             case 'notifySound':
                 addon.port.emit('changeSetting', 'notifySound', $scope.notifySound);
                 break;
-            case 'open': 
+            case 'open':
                 addon.port.emit('changeSetting', 'open', $scope.open);
                 break;
-            case 'notifySoundRing': 
+            case 'notifySoundRing':
                 addon.port.emit('changeSetting', 'notifySoundRing', $scope.notifySoundRing);
                 break;
             default: 
@@ -304,7 +302,6 @@ twitchLive.controller('settingsController', function($scope, $location) {
         }
     };
 });
-
 
 // Create the controller and inject Angular's $scope
 twitchLive.controller('searchController', function($scope, $routeParams) {
@@ -393,9 +390,11 @@ function debounce(fn, delay) {
 function getUserName(callback) {
     addon.port.emit('getStorage', 'twitchName');
 
-    addon.port.on('getStorageResponse', function(username) {
+    addon.port.on('getStorageResponse', function usernameResult(username) {
+        addon.port.removeListener("getStorageResponse", usernameResult);
         callback(username);
     });
+
 }
 
 function setUserName(twitchName) {

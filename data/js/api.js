@@ -59,7 +59,7 @@ twitchLive.config(function($routeProvider) {
 })
 
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $location
 twitchLive.controller('mainController', function($scope, $location) {
     getUserName(function(username) { gUsername = username; });
     addon.port.emit('getLoadCheck');
@@ -78,12 +78,12 @@ twitchLive.controller('mainController', function($scope, $location) {
             addon.port.emit('initialize');
             $scope.$apply();
         }
-
+        
         $scope.$digest();
     });
 });
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $location
 twitchLive.controller('gamesController', function($scope, $location) {
     $scope.loading = true;
 
@@ -108,7 +108,7 @@ twitchLive.controller('gamesController', function($scope, $location) {
     }
 });
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $routeParams
 twitchLive.controller('streamByGameController', function($scope, $routeParams) {
     $scope.loading = true;
     //Send port for api call to main.js
@@ -132,7 +132,7 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
     };
 });
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope, $location and $route
 twitchLive.controller('followingController', function($scope, $location, $route) {
     if (gUsername != undefined) {
         addon.port.emit('getFollowings', gUsername);
@@ -232,7 +232,7 @@ twitchLive.controller('featuredController', function($scope) {
 });
 
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $location
 twitchLive.controller('settingsController', function($scope, $location) {
     if (gUsername == undefined) {
         getUserName(function(username) { 
@@ -303,7 +303,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
     };
 });
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $routeParams
 twitchLive.controller('searchController', function($scope, $routeParams) {
     $scope.beginning = true;
     addon.port.emit('searchMessage');
@@ -336,7 +336,7 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
     });
 });
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $location
 twitchLive.controller('loginController', function($scope, $location) {
     getUserName(function(username) { gUsername = username; })
     if (gUsername == null) {
@@ -366,7 +366,7 @@ twitchLive.controller('loginController', function($scope, $location) {
     }
 });
 
-// Create the controller and inject Angular's $scope
+// Create the controller and inject Angular's $scope and $location
 twitchLive.controller('sidebarController', function($scope, $location) {
     // Function for sidebar actve classes.
     $scope.isActive = function(viewLocation) {
@@ -387,16 +387,26 @@ function debounce(fn, delay) {
   };
 }
 
+/**
+ * Get username from simple storage and execute callback function.
+ */
 function getUserName(callback) {
     addon.port.emit('getStorage', 'twitchName');
 
     addon.port.on('getStorageResponse', function usernameResult(username) {
         addon.port.removeListener("getStorageResponse", usernameResult);
-        callback(username);
+
+        // If callback parameter is filled, execute it. Callback function must be given but in case of something there is an if block.
+        if (callback && typeof(callback) === 'function') {
+            callback(username);
+        }
     });
 
 }
 
+/**
+ * Set username to simple storage
+ */
 function setUserName(twitchName) {
     try {
         addon.port.emit('setStorage', 'twitchName', twitchName);
@@ -407,6 +417,9 @@ function setUserName(twitchName) {
     }
 }
 
+/**
+ * Delete username from simple storage
+ */
 function deleteUserName() {
     try {
         addon.port.emit('deleteStorage', 'twitchName');
@@ -417,6 +430,9 @@ function deleteUserName() {
     }
 }
 
+/**
+ * Delete username, clear timer and emit a port for sign out.
+ */
 function logOut() {
     if (gUsername != undefined) {
         var result = deleteUserName();
@@ -432,6 +448,7 @@ function logOut() {
     };
 }
 
+// Port for playing audio for notification in windows.
 addon.port.on('playSound', function(soundName) {
     var audio = new Audio('./audio/' + soundName);
     audio.play();

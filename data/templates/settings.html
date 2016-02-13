@@ -1,64 +1,64 @@
 <div ng-hide="loggedIn">
-    <div class="alert warningBox">{{ logMsg }}</div>
-    <button class="button" ng-click="loadLoginPage()" type="button">{{ logInOut }}</button>
+    <div class="alert warningBox">{{ locale.logMsg }}</div>
+    <button class="button" ng-click="loadLoginPage()" type="button">{{ locale.logInOut }}</button>
     <br>
 </div>
 
 <div ng-show="loggedIn">
     <div class="alert successBox">
-        {{ logMsg + ' ' + result }}
+        {{ locale.logMsg + ' ' + result }}
     </div>
-    <button class="button" ng-click="cikisYap()" type="button">{{ logInOut }}</button>
+    <button class="button" ng-click="cikisYap()" type="button">{{ locale.logInOut }}</button>
 
     <div class="clear"></div>
-    <button class="button" ng-click="refreshFollowings()" type="button">{{ refreshBtn }}</button>
+    <button class="button" ng-click="refreshFollowings()" type="button">{{ locale.refreshBtn }}</button>
     <div class="clear"></div>
-    <div class="alert infoBox">{{ refreshMsg }}</div>
+    <div class="alert infoBox">{{ locale.refreshMsg }}</div>
 </div>
 
 <div class="settingsContent">
     <div class="setting">
         <div class="checkbox">
-            <input id="notification" type="checkbox" ng-model="notification" ng-change="change('notification')">
-            <label for="notification">Show notifications</label>
+            <input id="notification" type="checkbox" ng-model="locale.notification" ng-change="change('notification')">
+            <label for="notification">{{ locale.showNotifications }}</label>
 
-            <input id="notifySound" type="checkbox" ng-model="notifySound" ng-change="change('notifySound')">
-            <label for="notifySound">Play sound in notifications</label>
-
-            <div class="clear"></div>
-        </div>
-    </div>
-
-    <div class="setting">
-        Open streams at
-        <div class="radio">
-            <input id="open1" type="radio" ng-model="open" value="1" ng-change="change('open')">
-            <label for="open1">new tab</label>
-
-            <input id="open2" type="radio" ng-model="open" value="2" ng-change="change('open')">
-            <label for="open2">new window</label>
-
-
-            <input id="open3" type="radio" ng-model="open" value="3" ng-change="change('open')">
-            <label for="open3">popout</label>
+            <input id="notifySound" type="checkbox" ng-model="locale.notifySound" ng-change="change('notifySound')">
+            <label for="notifySound">{{ locale.playSound }}</label>
 
             <div class="clear"></div>
         </div>
     </div>
 
     <div class="setting">
-        Select the sound of notification
+        {{ locale.openStreams }}
         <div class="radio">
-            <input id="sound1" type="radio" ng-model="notifySoundRing" value="Ring.mp3" ng-change="change('notifySoundRing')">
-            <label for="sound1">Ring</label>
+            <input id="open1" type="radio" ng-model="locale.open" value="1" ng-change="change('open')">
+            <label for="open1">{{ locale.newTab }}</label>
 
-            <input id="sound2" type="radio" ng-model="notifySoundRing" value="Chord.mp3" ng-change="change('notifySoundRing')">
-            <label for="sound2">Chord</label>
+            <input id="open2" type="radio" ng-model="locale.open" value="2" ng-change="change('open')">
+            <label for="open2">{{ locale.newWindow }}</label>
 
-            <input id="sound3" type="radio" ng-model="notifySoundRing" value="Aurora.mp3" ng-change="change('notifySoundRing')">
+
+            <input id="open3" type="radio" ng-model="locale.open" value="3" ng-change="change('open')">
+            <label for="open3">{{ locale.popout }}</label>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="setting">
+        {{ locale.notificationSound }}
+        <div class="radio">
+            <input id="sound1" type="radio" ng-model="locale.notifySoundRing" value="Chord.mp3" ng-change="change('notifySoundRing')">
+            <label for="sound1">Chord</label>
+
+            <input id="sound2" type="radio" ng-model="locale.notifySoundRing" value="Ring.mp3" ng-change="change('notifySoundRing')">
+            <label for="sound2">Ring</label>
+
+            <input id="sound3" type="radio" ng-model="locale.notifySoundRing" value="Aurora.mp3" ng-change="change('notifySoundRing')">
             <label for="sound3">Aurora</label>
 
-            <input id="sound4" type="radio" ng-model="notifySoundRing" value="Circles.mp3" ng-change="change('notifySoundRing')">
+            <input id="sound4" type="radio" ng-model="locale.notifySoundRing" value="Circles.mp3" ng-change="change('notifySoundRing')">
             <label for="sound4">Circles</label>
 
             <div class="clear"></div>
@@ -67,7 +67,7 @@
 </div>
 
 <div class="alert infoBox">
-    <div>{{ help }}</div>
+    <div>{{ locale.help }}</div>
     
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
         <input type="hidden" name="cmd" value="_s-xclick">
@@ -76,5 +76,5 @@
         <img alt="" border="0" src="https://www.paypalobjects.com/tr_TR/i/scr/pixel.gif" width="1" height="1">
     </form>
     
-    <div>{{ createdBy }}</div>
+    <div>{{ locale.createdBy }}</div>
 </div>

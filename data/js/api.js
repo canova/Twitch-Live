@@ -246,7 +246,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
         addon.port.emit('getSettings', true);
     };
 
-    addon.port.on('settingsResponse', function(logMsg, logInOut, refreshBtn, refreshMsg, help, createdBy, notification, notifySound, open, notifySoundRing) {
+    addon.port.on('settingsResponse', function(locale) {
         getUserName(function(username) { gUsername = username; });
 
         if (gUsername == '' || gUsername == null || gUsername == undefined) {
@@ -255,17 +255,8 @@ twitchLive.controller('settingsController', function($scope, $location) {
             $scope.loggedIn = true;
         }
 
-        $scope.logMsg = logMsg;
+        $scope.locale = locale;
         $scope.result = gUsername;
-        $scope.logInOut = logInOut;
-        $scope.refreshBtn = refreshBtn;
-        $scope.refreshMsg = refreshMsg;
-        $scope.help = help;
-        $scope.createdBy = createdBy;
-        $scope.notification = notification;
-        $scope.notifySound = notifySound;
-        $scope.open = open;
-        $scope.notifySoundRing = notifySoundRing;
 
         //for scope life cycle
         $scope.$digest();
@@ -286,16 +277,17 @@ twitchLive.controller('settingsController', function($scope, $location) {
     $scope.change = function(setting) {
         switch(setting) {
             case 'notification':
-                addon.port.emit('changeSetting', 'notification', $scope.notification);
+                addon.port.emit('changeSetting', 'notification', $scope.locale.notification);
                 break;
             case 'notifySound':
-                addon.port.emit('changeSetting', 'notifySound', $scope.notifySound);
+                addon.port.emit('changeSetting', 'notifySound', $scope.locale.notifySound);
                 break;
             case 'open':
-                addon.port.emit('changeSetting', 'open', $scope.open);
+                addon.port.emit('changeSetting', 'open', $scope.locale.open);
                 break;
             case 'notifySoundRing':
-                addon.port.emit('changeSetting', 'notifySoundRing', $scope.notifySoundRing);
+                playSound($scope.locale.notifySoundRing);
+                addon.port.emit('changeSetting', 'notifySoundRing', $scope.locale.notifySoundRing);
                 break;
             default: 
                 break;
@@ -450,6 +442,13 @@ function logOut() {
 
 // Port for playing audio for notification in windows.
 addon.port.on('playSound', function(soundName) {
+    playSound(soundName);
+});
+
+/**
+ * Play notification sound either in notification or settings page
+ */
+function playSound(soundName) {
     var audio = new Audio('./audio/' + soundName);
     audio.play();
-});
+}

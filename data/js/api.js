@@ -68,9 +68,12 @@ twitchLive.controller('mainController', function($scope, $location) {
         addon.port.removeListener("getLoadCheckResponse", loadCheckResponse); // Removing for prevent from duplicate event listeners
         var firstTime = localStorage.getItem('twitchLiveFirst');
 
-        if ((firstTime == undefined || firstTime == true) && gUsername == undefined) { // Did 'firstTime == true' just in case of new update or smth.
+        if ((firstTime == undefined || firstTime == true) && gUsername == undefined) {
             localStorage.setItem('twitchLiveFirst', false);
             $location.url('/login');
+            $scope.$apply();
+        } else if (gUsername == undefined) {
+            $location.url('/games');
             $scope.$apply();
         } else {
             angular.element(document.getElementById('loginOut')).html(signOut);

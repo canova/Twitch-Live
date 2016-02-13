@@ -1,2 +1,2 @@
 # Twitch-Live
-A simple and useful add-on for Twitch.tv notifications and streams.
+A useful add-on for browsing Twitch.tv games, streams and getting notifications when your followed channel come online.

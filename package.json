@@ -2,11 +2,11 @@
   "name": "twitch_live",
   "title": "Twitch Live",
   "id": "jid1-SE3gVqeg20464w@jetpack",
-  "description": "A simple and useful add-on for Twitch.tv notifications and streams",
+  "description": "A useful add-on for browsing Twitch.tv games, streams and getting notifications when your followed channel come online.",
   "main": "lib/main.js",
-  "author": "Can Altinova",
+  "author": "Nazım Can Altınova",
   "license": "MIT",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"
@@ -16,5 +16,5 @@
     "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"],
     "multiprocess": true,
     "private-browsing": true
-	}
+  }
 }

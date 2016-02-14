@@ -271,6 +271,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
 
     $scope.logOut = function() {
         logOut();
+        $location.url('/');
     };
 
     $scope.refreshFollowings = function() {

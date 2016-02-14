@@ -6,7 +6,7 @@
   "main": "lib/main.js",
   "author": "Nazım Can Altınova",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"

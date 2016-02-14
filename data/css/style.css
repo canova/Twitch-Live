@@ -22,7 +22,7 @@ a {
     text-decoration: none;
 }
 
-a:focus {
+a:focus, button {
     outline: none;
 }
 

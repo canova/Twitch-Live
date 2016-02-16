@@ -150,7 +150,7 @@ ul#sideMenu li.settings a {
 }
 
 /* Main Content */
-main {
+main, main > div.container {
     width: 360px;
     height: 520px;
     overflow-x: hidden;

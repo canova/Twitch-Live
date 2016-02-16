@@ -1,8 +1,10 @@
-<div class="alert successBox"> {{ welcomeMsg }} </div>
+<div class="container">
+    <div class="alert successBox"> {{ welcomeMsg }} </div>
 
-<form id="loginForm" name="loginForm">
-    <input type="text" placeholder="Twitch User Name" id="username" ng-model="username">
-    
-    <button class="button" type="submit" ng-click="post()"> {{ signIn }} </button>
-    <a href="#games" class="passSign"> {{ passSign }} </a>
-</form>
+    <form id="loginForm" name="loginForm">
+        <input type="text" placeholder="Twitch User Name" id="username" ng-model="username" />
+        
+        <button class="button" type="submit" ng-click="post()"> {{ signIn }} </button>
+        <a href="#games" class="passSign"> {{ passSign }} </a>
+    </form>
+</div>

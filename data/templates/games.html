@@ -1,16 +1,18 @@
-<div class="loadingScreen" ng-show="loading"></div>
+<div class="container">
+    <div class="loadingScreen" ng-show="loading"></div>
 
-<ul id="contentList">
-	<li ng-repeat="item in list | filter:query">
-	    <a href="javascript:void(0);" ng-click="streamByGame(item.game.name)">
-	        <img src="{{ item.game.logo.small }}" alt="" class="gameImage">
+    <ul id="contentList">
+        <li ng-repeat="item in list | filter:query">
+            <a href="javascript:void(0);" ng-click="streamByGame(item.game.name)">
+                <img src="{{ item.game.logo.small }}" alt="" class="gameImage" />
 
-	        <div class="rightSide">
-	        	<h1>{{ item.game.name }}</h1>
-	            <h2 class="game">{{ item.channels + " " + channelsText + " - " +  item.viewers + " " + viewersText }}</h2>
-	        </div>
-	        
-	        <div class="clear"></div>
-	    </a>
-	</li>
-</ul>
+                <div class="rightSide">
+                    <h1>{{ item.game.name }}</h1>
+                    <h2 class="game">{{ item.channels + " " + channelsText + " - " +  item.viewers + " " + viewersText }}</h2>
+                </div>
+                
+                <div class="clear"></div>
+            </a>
+        </li>
+    </ul>
+</div>

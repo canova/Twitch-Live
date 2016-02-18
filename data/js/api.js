@@ -334,18 +334,16 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
 
 // Create the controller and inject Angular's $scope and $location
 twitchLive.controller('loginController', function($scope, $location) {
-    getUserName(function(username) { gUsername = username; })
+    getUserName(function(username) { gUsername = username; });
     if (gUsername == null) {
 
         //Send port for login page strings
         addon.port.emit('loginPage');
 
         //Response from main.js
-        addon.port.on('loginPageResponse', function(signIn, passSign, welcomeMsg) {
+        addon.port.on('loginPageResponse', function(locale) {
 
-            $scope.signIn = signIn;
-            $scope.passSign = passSign
-            $scope.welcomeMsg = welcomeMsg;
+            $scope.locale = locale;
 
             //for scope life cycle
             $scope.$digest();

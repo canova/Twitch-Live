@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="alert successBox"> {{ welcomeMsg }} </div>
+    <div class="alert successBox"> {{ locale.welcomeMsg }} </div>
 
     <form id="loginForm" name="loginForm">
-        <input type="text" placeholder="Twitch User Name" id="username" ng-model="username" />
+        <input type="text" placeholder="{{ locale.username }}" id="username" ng-model="username" />
         
-        <button class="button" type="submit" ng-click="post()"> {{ signIn }} </button>
-        <a href="#games" class="passSign"> {{ passSign }} </a>
+        <button class="button" type="submit" ng-click="post()"> {{ locale.signIn }} </button>
+        <a href="#games" class="passSign"> {{ locale.passSign }} </a>
     </form>
 </div>

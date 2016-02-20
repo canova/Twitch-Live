@@ -5,7 +5,7 @@ A useful add-on for browsing Twitch.tv games, streams and getting notifications 
 
 You can download this add-on from directly on [Mozilla Add-ons](https://addons.mozilla.org/addon/twitch-live?src=github) page or you can install unsigned version from repository's releases directory.
 
-**Note that in Firefox 43 and above, unsigned add-ons are not allowed to install by default. You need to enable it from about:config (xpinstall.signatures.required). After Firefox 46, you won't be able to install unsigned add-ons. Unfortunately with no override.**
+**Note:** In Firefox 43 and above, unsigned add-ons are not allowed to install by default. You need to enable it from about:config (xpinstall.signatures.required). After Firefox 46, you won't be able to install unsigned add-ons. Unfortunately with no override.
 
 ## Translation Contributions
 

@@ -90,10 +90,10 @@ twitchLive.controller('mainController', function($scope, $location) {
 twitchLive.controller('gamesController', function($scope, $location) {
     $scope.loading = true;
 
-    //Send port for api call to main.js
+    // Send port for api call to main.js
     addon.port.emit('printGames');
 
-    //Response from main.js
+    // Response from main.js
     addon.port.on('gameResponse', function(gameResult, gViewers, gChannels) {
         document.getElementById('refresh').alt = 'Refresh Game';
 
@@ -102,7 +102,7 @@ twitchLive.controller('gamesController', function($scope, $location) {
         $scope.channelsText = gChannels;
         $scope.loading = false;
 
-        //for scope life cycle
+        // For scope life cycle
         $scope.$digest();
     });
 
@@ -114,10 +114,10 @@ twitchLive.controller('gamesController', function($scope, $location) {
 // Create the controller and inject Angular's $scope and $routeParams
 twitchLive.controller('streamByGameController', function($scope, $routeParams) {
     $scope.loading = true;
-    //Send port for api call to main.js
+    // Send port for api call to main.js
     addon.port.emit('getStreamsByGame', $routeParams.gameName);
 
-    //Response from main.js
+    // Response from main.js
     addon.port.on('streamByGameResponse', function(response, gViewers, gChannels) {
         document.getElementById('refresh').alt = 'Refresh Game';
 
@@ -126,7 +126,7 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
         $scope.channelsText = gChannels;
         $scope.loading = false;
 
-        //for scope life cycle
+        // For scope life cycle
         $scope.$digest();
     });
 
@@ -153,7 +153,7 @@ twitchLive.controller('followingController', function($scope, $location, $route)
     }
 
     document.getElementById('refresh').alt = 'Refresh Followings';
-    //Creating an instance for push method
+    // Creating an instance for push method
     $scope.list = [];
 
     // If there is online streams this port will work.
@@ -163,7 +163,7 @@ twitchLive.controller('followingController', function($scope, $location, $route)
         $scope.playingText = gPlaying;
         $scope.loading = false;
 
-        //for scope life cycle
+        // For scope life cycle
         $scope.$digest();
 
     });
@@ -186,10 +186,10 @@ twitchLive.controller('followingController', function($scope, $location, $route)
 twitchLive.controller('streamsController', function($scope) {
     $scope.loading = true;
 
-    //Send port for api call to main.js
+    // Send port for api call to main.js
     addon.port.emit('printStreams');
 
-    //Response from main.js
+    // Response from main.js
     addon.port.on('streamResponse', function(response, gViewers, gPlaying) {
         document.getElementById('refresh').alt = 'Refresh Streams';
 
@@ -198,7 +198,7 @@ twitchLive.controller('streamsController', function($scope) {
         $scope.playingText = gPlaying;
         $scope.loading = false;
 
-        //for scope life cycle
+        // For scope life cycle
         $scope.$digest();
     });
 
@@ -212,10 +212,10 @@ twitchLive.controller('streamsController', function($scope) {
 twitchLive.controller('featuredController', function($scope) {
     $scope.loading = true;
 
-    //Send port for api call to main.js
+    // Send port for api call to main.js
     addon.port.emit('getFeatured');
 
-    //Response from main.js
+    // Response from main.js
     addon.port.on('featuredResponse', function(response, gViewers, gPlaying) {
         document.getElementById('refresh').alt = 'Refresh Featured';
 
@@ -224,7 +224,7 @@ twitchLive.controller('featuredController', function($scope) {
         $scope.playingText = gPlaying;
         $scope.loading = false;
 
-        //for scope life cycle
+        // For scope life cycle
         $scope.$digest();
     });
 
@@ -261,7 +261,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
         $scope.locale = locale;
         $scope.result = gUsername;
 
-        //for scope life cycle
+        // For scope life cycle
         $scope.$digest();
     });
 
@@ -327,7 +327,7 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
         $scope.playingText = gPlaying;
         $scope.loading = false;
 
-        // for scope life cycle
+        // For scope life cycle
         $scope.$digest();
     });
 });
@@ -337,15 +337,15 @@ twitchLive.controller('loginController', function($scope, $location) {
     getUserName(function(username) { gUsername = username; });
     if (gUsername == null) {
 
-        //Send port for login page strings
+        // Send port for login page strings
         addon.port.emit('loginPage');
 
-        //Response from main.js
+        // Response from main.js
         addon.port.on('loginPageResponse', function(locale) {
 
             $scope.locale = locale;
 
-            //for scope life cycle
+            // For scope life cycle
             $scope.$digest();
         });
 

@@ -11,10 +11,17 @@
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"
   },
-
   "permissions": {
     "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"],
     "multiprocess": true,
     "private-browsing": true
+  },
+  "homepage": "https://github.com/canaltinova/Twitch-Live",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/canaltinova/Twitch-Live.git"
+  },
+  "bugs": {
+    "url": "https://github.com/canaltinova/Twitch-Live/issues"
   }
 }

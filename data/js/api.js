@@ -3,7 +3,6 @@ var twitchLive = angular.module('twitchLive', ['ngRoute']);
 var gUsername;
 var settings = [];
 
-
 // Configure our routes
 twitchLive.config(function($routeProvider) {
     $routeProvider

@@ -80,7 +80,7 @@ twitchLive.controller('mainController', function($scope, $location) {
             addon.port.emit('initialize');
             $scope.$apply();
         }
-        
+
         $scope.$digest();
     });
 });
@@ -140,7 +140,7 @@ twitchLive.controller('followingController', function($scope, $location, $route)
         addon.port.emit('getFollowings', gUsername);
         $scope.loading = true;
     } else {
-        getUserName(function(username) { 
+        getUserName(function(username) {
             if (username != undefined) {
                 gUsername = username;
                 $route.reload();
@@ -237,7 +237,7 @@ twitchLive.controller('featuredController', function($scope) {
 // Create the controller and inject Angular's $scope and $location
 twitchLive.controller('settingsController', function($scope, $location) {
     if (gUsername == undefined) {
-        getUserName(function(username) { 
+        getUserName(function(username) {
             gUsername = username;
         });
     }
@@ -292,7 +292,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
                 playSound($scope.locale.notifySoundRing);
                 addon.port.emit('changeSetting', 'notifySoundRing', $scope.locale.notifySoundRing);
                 break;
-            default: 
+            default:
                 break;
         }
     };

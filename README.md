@@ -1,5 +1,5 @@
-Twitch Live
-===========
+Twitch Live [![Build Status](https://travis-ci.org/canaltinova/Twitch-Live.svg?branch=master)](https://travis-ci.org/canaltinova/Twitch-Live)
+===
 
 A useful add-on for browsing Twitch.tv games, streams and getting notifications when your followed channel come online.
 

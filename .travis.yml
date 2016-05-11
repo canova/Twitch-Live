@@ -1,0 +1,13 @@
+language: node_js
+env:
+  global:
+    - DISPLAY=:99.0
+    - JPM_FIREFOX_BINARY=$TRAVIS_BUILD_DIR/firefox/firefox
+addons:
+  firefox: "46.0"
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - tar xvjf /tmp/firefox-*.tar.bz2 -C $TRAVIS_BUILD_DIR/
+  - npm install jpm -g
+script:
+  - jpm test

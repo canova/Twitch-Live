@@ -7,10 +7,6 @@
   "author": "Nazım Can Altınova",
   "license": "MIT",
   "version": "1.0.4",
-  "engines": {
-    "firefox": ">=38.0a1",
-    "fennec": ">=38.0a1"
-  },
   "permissions": {
     "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"],
     "multiprocess": true,

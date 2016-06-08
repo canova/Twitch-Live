@@ -1,6 +1,10 @@
 .DS_Store
 
-/releases/
+releases/
+test/*
 
 *.zip
 *.xpi
+.git
+.travis.yml
+.gitignore

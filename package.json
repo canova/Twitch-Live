@@ -19,5 +19,14 @@
   },
   "bugs": {
     "url": "https://github.com/canaltinova/Twitch-Live/issues"
-  }
+  },
+  "preferences": [
+    {
+        "name": "clientID",
+        "title": "Twitch Kraken API Client ID",
+        "description": "Twitch requires client ID for all API calls in headers.",
+        "type": "string",
+        "value": ""
+    }
+  ]
 }

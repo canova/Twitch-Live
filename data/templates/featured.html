@@ -5,7 +5,7 @@
     <ul id="contentList">
         <li ng-repeat="item in list | filter:query">
             <a href="javascript:void(0);" ng-click="openPage(item.stream.channel.url)">
-                <img src="{{ item.stream.preview.small }}" alt="" class="channelImage" />
+                <img lazy-img="{{ item.stream.preview.small }}" alt="" class="channelImage lazy" />
 
                 <div class="rightSide">
                     <h1>{{ item.stream.channel.status.substring(0,35) | limitTo: 35}}</h1>

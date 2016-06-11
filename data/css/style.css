@@ -150,7 +150,7 @@ ul#sideMenu li.settings a {
 }
 
 /* Main Content */
-main, main > div.container {
+main {
     width: 360px;
     height: 520px;
     overflow-x: hidden;
@@ -179,6 +179,15 @@ main, main > div.container {
     content: '';
     -moz-animation: loadingAnim 0.9s linear infinite;
     animation: loadingAnim 0.9s linear infinite;
+}
+
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+img.lazy.success {
+    opacity: 1;
 }
 
 /* Login Page */

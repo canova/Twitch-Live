@@ -1,5 +1,5 @@
 // Create the module and name it twitchLive, also include ngRoute for routing.
-var twitchLive = angular.module('twitchLive', ['ngRoute']);
+var twitchLive = angular.module('twitchLive', ['ngRoute', 'angularLazyImg']);
 var gUsername;
 var settings = [];
 
@@ -57,6 +57,11 @@ twitchLive.config(function($routeProvider) {
     });
 })
 
+twitchLive.config(['lazyImgConfigProvider', function(lazyImgConfigProvider){
+    lazyImgConfigProvider.setOptions({
+        successClass: 'success', // in case of loading image success what class should be added
+    });
+}])
 
 // Create the controller and inject Angular's $scope and $location
 twitchLive.controller('mainController', function($scope, $location) {
@@ -436,7 +441,6 @@ function logOut() {
             addon.port.on('getSignInOutResponse', function(signIn) {
                 angular.element(document.getElementById('loginOut')).html(signIn);
             });
-
         };
     };
 }
@@ -451,5 +455,6 @@ addon.port.on('playSound', function(soundName) {
  */
 function playSound(soundName) {
     var audio = new Audio('./audio/' + soundName);
+    audio.volume = 0.6;
     audio.play();
 }

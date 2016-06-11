@@ -4,7 +4,7 @@
     <ul id="contentList">
         <li ng-repeat="item in list | filter:query">
             <a href="javascript:void(0);" ng-click="streamByGame(item.game.name)">
-                <img src="{{ item.game.logo.small }}" alt="" class="gameImage" />
+                <img lazy-img="{{ item.game.logo.small }}" alt="" class="gameImage lazy"/>
 
                 <div class="rightSide">
                     <h1>{{ item.game.name }}</h1>

@@ -6,7 +6,7 @@
   "main": "lib/main.js",
   "author": "Nazım Can Altınova",
   "license": "MIT",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "permissions": {
     "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"],
     "multiprocess": true,

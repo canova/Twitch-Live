@@ -26,7 +26,7 @@
         "title": "Twitch Kraken API Client ID",
         "description": "Twitch requires client ID for all API calls in headers.",
         "type": "string",
-        "value": ""
+        "value": "pg1i3zl9bj3ec9tc8ktb2g88obxmi03"
     }
   ]
 }

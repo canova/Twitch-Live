@@ -99,10 +99,10 @@ twitchLive.controller('gamesController', function($scope, $location) {
     addon.port.emit('printGames');
 
     // Response from main.js
-    addon.port.on('gameResponse', function(gameResult, gViewers, gChannels) {
+    addon.port.on('gameResponse', function(games, gViewers, gChannels) {
         document.getElementById('refresh').alt = 'Refresh Game';
 
-        $scope.list = gameResult;
+        $scope.list = games;
         $scope.viewersText = gViewers;
         $scope.channelsText = gChannels;
         $scope.loading = false;
@@ -124,10 +124,10 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
     addon.port.emit('getStreamsByGame', $routeParams.gameName);
 
     // Response from main.js
-    addon.port.on('streamByGameResponse', function(response, gViewers, gChannels) {
+    addon.port.on('streamByGameResponse', function(streams, gViewers, gChannels) {
         document.getElementById('refresh').alt = 'Refresh Game';
 
-        $scope.list = response;
+        $scope.list = streams;
         $scope.viewersText = gViewers;
         $scope.channelsText = gChannels;
         $scope.loading = false;
@@ -165,8 +165,8 @@ twitchLive.controller('followingController', function($scope, $location, $route)
     $scope.list = [];
 
     // If there is online streams this port will work.
-    addon.port.on('followResponse', function(response, gViewers, gPlaying) {
-        $scope.list = response;
+    addon.port.on('followResponse', function(followings, gViewers, gPlaying) {
+        $scope.list = followings;
         $scope.viewersText = gViewers;
         $scope.playingText = gPlaying;
         $scope.loading = false;
@@ -199,10 +199,10 @@ twitchLive.controller('streamsController', function($scope) {
     addon.port.emit('printStreams');
 
     // Response from main.js
-    addon.port.on('streamResponse', function(response, gViewers, gPlaying) {
+    addon.port.on('streamResponse', function(streams, gViewers, gPlaying) {
         document.getElementById('refresh').alt = 'Refresh Streams';
 
-        $scope.list = response;
+        $scope.list = streams;
         $scope.viewersText = gViewers
         $scope.playingText = gPlaying;
         $scope.loading = false;
@@ -226,10 +226,10 @@ twitchLive.controller('featuredController', function($scope) {
     addon.port.emit('getFeatured');
 
     // Response from main.js
-    addon.port.on('featuredResponse', function(response, gViewers, gPlaying) {
+    addon.port.on('featuredResponse', function(featureds, gViewers, gPlaying) {
         document.getElementById('refresh').alt = 'Refresh Featured';
 
-        $scope.list = response;
+        $scope.list = featureds;
         $scope.viewersText = gViewers
         $scope.playingText = gPlaying;
         $scope.loading = false;

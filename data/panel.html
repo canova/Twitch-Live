@@ -20,7 +20,7 @@
         <!-- headerRight -->
         <div class="headerRight">
             <input type="text" id="search" placeholder="Search" ng-model="query">
-            <a href="#" onclick="refreshContent()" id="refresh"></a>
+            <div id="refresh" refresh-page></div>
             <div class="clear"></div>
         </div>
         <!-- //headerRight -->
@@ -35,22 +35,22 @@
             <!-- sideMenu -->
             <ul id="sideMenu">
                 <li class="games">
-                    <a href="#games"ng-class="{ active: isActive('/games')}"></a>
+                    <a href="#games"ng-class="{active: isActive('/games')}"></a>
                 </li>
                 <li class="following">
-                    <a href="#following" ng-class="{ active: isActive('/following')}"></a>
+                    <a href="#following" ng-class="{active: isActive('/following')}"></a>
                 </li>
                 <li class="streams">
-                    <a href="#streams" ng-class="{ active: isActive('/streams')}"></a>
+                    <a href="#streams" ng-class="{active: isActive('/streams')}"></a>
                 </li>
                 <li class="featured">
-                    <a href="#featured" ng-class="{ active: isActive('/featured')}"></a>
+                    <a href="#featured" ng-class="{active: isActive('/featured')}"></a>
                 </li>
                 <li class="search">
-                    <a href="#search" ng-class="{ active: isActive('/search')}"></a>
+                    <a href="#search" ng-class="{active: isActive('/search')}"></a>
                 </li>
                 <li class="settings">
-                    <a href="#settings" ng-class="{ active: isActive('/settings')}"></a>
+                    <a href="#settings" ng-class="{active: isActive('/settings')}"></a>
                 </li>
             </ul>
             <!-- //sideMenu -->

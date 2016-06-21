@@ -100,8 +100,6 @@ twitchLive.controller('gamesController', function($scope, $location) {
 
     // Response from main.js
     addon.port.on('gameResponse', function(games, gViewers, gChannels) {
-        document.getElementById('refresh').alt = 'Refresh Game';
-
         $scope.list = games;
         $scope.viewersText = gViewers;
         $scope.channelsText = gChannels;
@@ -125,8 +123,6 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
 
     // Response from main.js
     addon.port.on('streamByGameResponse', function(streams, gViewers, gChannels) {
-        document.getElementById('refresh').alt = 'Refresh Game';
-
         $scope.list = streams;
         $scope.viewersText = gViewers;
         $scope.channelsText = gChannels;
@@ -160,7 +156,6 @@ twitchLive.controller('followingController', function($scope, $location, $route)
         });
     }
 
-    document.getElementById('refresh').alt = 'Refresh Followings';
     // Creating an instance for push method
     $scope.list = [];
 
@@ -200,8 +195,6 @@ twitchLive.controller('streamsController', function($scope) {
 
     // Response from main.js
     addon.port.on('streamResponse', function(streams, gViewers, gPlaying) {
-        document.getElementById('refresh').alt = 'Refresh Streams';
-
         $scope.list = streams;
         $scope.viewersText = gViewers
         $scope.playingText = gPlaying;
@@ -227,8 +220,6 @@ twitchLive.controller('featuredController', function($scope) {
 
     // Response from main.js
     addon.port.on('featuredResponse', function(featureds, gViewers, gPlaying) {
-        document.getElementById('refresh').alt = 'Refresh Featured';
-
         $scope.list = featureds;
         $scope.viewersText = gViewers
         $scope.playingText = gPlaying;
@@ -330,7 +321,6 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
 
     // Response port for search query
     addon.port.on('searchResponse', function(response, gViewers, gPlaying) {
-        document.getElementById('refresh').alt = 'Refresh Search';
         $scope.beginning = false;
 
         $scope.list = response;
@@ -377,6 +367,19 @@ twitchLive.controller('sidebarController', function($scope, $location) {
     $scope.isActive = function(viewLocation) {
         return viewLocation === $location.path();
     };
+});
+
+twitchLive.directive('refreshPage', function() {
+    return {
+        restrict: 'A',
+        scope: true,
+        template: '<a href="javascript:void(0)" ng-click="refresh()"></a>',
+        controller: function($scope, $route){
+            $scope.refresh = function(){
+                $route.reload();
+            }
+        }
+    }
 });
 
 // Delaying a function to load for api calls

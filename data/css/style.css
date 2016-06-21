@@ -81,13 +81,16 @@ a.button.loginOut {
     background: #fff;
 }
 
-a#refresh {
+#refresh {
+    float: right;
+}
+
+#refresh a {
     width: 16px;
     height: 16px;
     background: url('../images/refresh.png') no-repeat center center /contain;
     margin: 3px 0 0 10px;
     display: block;
-    float: right;
     transition: 0.2s;
 }
 

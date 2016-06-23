@@ -92,7 +92,7 @@ twitchLive.controller('mainController', function($scope, $location) {
 
 // Create the controller and inject Angular's $scope and $location
 twitchLive.controller('gamesController', function($scope, $location) {
-    clearFilter($scope);
+    clearFilter();
     $scope.loading = true;
 
     // Send port for api call to main.js
@@ -116,7 +116,7 @@ twitchLive.controller('gamesController', function($scope, $location) {
 
 // Create the controller and inject Angular's $scope and $routeParams
 twitchLive.controller('streamByGameController', function($scope, $routeParams) {
-    clearFilter($scope);
+    clearFilter();
     $scope.loading = true;
     // Send port for api call to main.js
     addon.port.emit('getStreamsByGame', $routeParams.gameName);
@@ -139,7 +139,7 @@ twitchLive.controller('streamByGameController', function($scope, $routeParams) {
 
 // Create the controller and inject Angular's $scope, $location and $route
 twitchLive.controller('followingController', function($scope, $location, $route) {
-    clearFilter($scope);
+    clearFilter();
 
     if (gUsername != undefined) {
         addon.port.emit('getFollowings', gUsername);
@@ -187,7 +187,7 @@ twitchLive.controller('followingController', function($scope, $location, $route)
 
 // Create the controller and inject Angular's $scope
 twitchLive.controller('streamsController', function($scope) {
-    clearFilter($scope);
+    clearFilter();
     $scope.loading = true;
 
     // Send port for api call to main.js
@@ -212,7 +212,7 @@ twitchLive.controller('streamsController', function($scope) {
 
 // Create the controller and inject Angular's $scope
 twitchLive.controller('featuredController', function($scope) {
-    clearFilter($scope);
+    clearFilter();
     $scope.loading = true;
 
     // Send port for api call to main.js
@@ -238,7 +238,8 @@ twitchLive.controller('featuredController', function($scope) {
 
 // Create the controller and inject Angular's $scope and $location
 twitchLive.controller('settingsController', function($scope, $location) {
-    clearFilter($scope);
+    clearFilter();
+
     if (gUsername == undefined) {
         getUserName(function(username) {
             gUsername = username;
@@ -303,6 +304,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
 
 // Create the controller and inject Angular's $scope and $routeParams
 twitchLive.controller('searchController', function($scope, $routeParams) {
+    clearFilter();
     $scope.beginning = true;
     addon.port.emit('searchMessage');
 
@@ -315,6 +317,8 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
     $scope.$watch('query', debounce(function() {
         if ($scope.query != undefined && $scope.query != '') {
             $scope.loading = true;
+            $scope.beginning = false;
+            $scope.$digest();
             addon.port.emit('search', $scope.query);
         }
     }, 500));
@@ -469,7 +473,7 @@ function playSound(soundName) {
     audio.play();
 }
 
-function clearFilter($scope) {
-    $scope.query = {};
-    document.getElementById('search').value = ''
+function clearFilter() {
+   var input = angular.element(document.getElementById('search'));
+   input.val('').triggerHandler('input');
 }

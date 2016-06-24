@@ -306,6 +306,7 @@ twitchLive.controller('settingsController', function($scope, $location) {
 twitchLive.controller('searchController', function($scope, $routeParams) {
     clearFilter();
     $scope.beginning = true;
+    $scope.notFound = false;
     addon.port.emit('searchMessage');
 
     addon.port.on('searchMessageResponse', function(searchMessage) {
@@ -318,19 +319,29 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
         if ($scope.query != undefined && $scope.query != '') {
             $scope.loading = true;
             $scope.beginning = false;
+            $scope.notFound = false;
+            $scope.list = {};
+
+
             $scope.$digest();
             addon.port.emit('search', $scope.query);
         }
     }, 500));
 
     // Response port for search query
-    addon.port.on('searchResponse', function(response, gViewers, gPlaying) {
+    addon.port.on('searchResponse', function(response, gViewers, gPlaying, notFound) {
         $scope.beginning = false;
 
         $scope.list = response;
         $scope.viewersText = gViewers
         $scope.playingText = gPlaying;
+        $scope.notFoundText = notFound;
         $scope.loading = false;
+
+        if (response.length == 0)
+            $scope.notFound = true;
+        else
+            $scope.notFound = false;
 
         // For scope life cycle
         $scope.$digest();

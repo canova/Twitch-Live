@@ -1,6 +1,7 @@
 <div class="container">
     <div class="loadingScreen" ng-show="loading"></div>
     <div class="alert infoBox" ng-show="beginning">{{beginningText}}</div>
+    <div class="alert warningBox" ng-show="notFound">{{notFoundText}}</div>
 
     <ul id="contentList">
         <li ng-repeat="item in list">

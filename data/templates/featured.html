@@ -1,6 +1,5 @@
 <div class="container">
     <div class="loadingScreen" ng-show="loading"></div>
-    <div class="alert warningBox" ng-show="noStream">{{noStreamText}}</div>
 
     <ul id="contentList">
         <li ng-repeat="item in list | filter:query">

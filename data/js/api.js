@@ -165,6 +165,7 @@ twitchLive.controller('followingController', function($scope, $location, $route)
         $scope.viewersText = gViewers;
         $scope.playingText = gPlaying;
         $scope.loading = false;
+        $scope.noStream = false;
 
         // For scope life cycle
         $scope.$digest();
@@ -321,7 +322,6 @@ twitchLive.controller('searchController', function($scope, $routeParams) {
             $scope.beginning = false;
             $scope.notFound = false;
             $scope.list = {};
-
 
             $scope.$digest();
             addon.port.emit('search', $scope.query);

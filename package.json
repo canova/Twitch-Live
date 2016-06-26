@@ -6,7 +6,7 @@
   "main": "lib/main.js",
   "author": "Nazım Can Altınova",
   "license": "MIT",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "permissions": {
     "cross-domain-content": ["https://*.twitch.tv/","http://*.twitch.tv/","http://static-cdn.jtvnw.net/"],
     "multiprocess": true,
@@ -26,6 +26,7 @@
         "title": "Twitch Kraken API Client ID",
         "description": "Twitch requires client ID for all API calls in headers.",
         "type": "string",
+        "hidden": true,
         "value": "pg1i3zl9bj3ec9tc8ktb2g88obxmi03"
     }
   ]

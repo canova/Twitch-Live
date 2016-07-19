@@ -1,7 +1,7 @@
 .DS_Store
 
 releases/
-test/*
+test/
 
 *.zip
 *.xpi

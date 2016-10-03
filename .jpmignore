@@ -8,3 +8,4 @@ test/
 .git
 .travis.yml
 .gitignore
+screenshot.jpg

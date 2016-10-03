@@ -35,6 +35,10 @@ Special thanks to Lukasz Pawliczak for adding Polish translation! Because of Eng
 2. If you haven't installed node.js and jpm yet, you can download Node.js from [here](https://nodejs.org/) and then you can download jpm package with `npm install jpm -g` command. You might need sudo permission to execute that command.
 3. Open your terminal in your project folder, run `jpm run`. It will create a new instance of Firefox and install the add-on.
 
+## Screenshot
+
+![screenshot](screenshot.jpg)
+
 ## Contributors
 
 * Nazım Can Altınova (@canaltinova)
